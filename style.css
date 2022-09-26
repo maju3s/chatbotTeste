@@ -68,6 +68,6 @@ response{
 
 .img img{
     position: absolute;
-    width: 30px;
+    width: 300px;
     z-index: -1;
 }

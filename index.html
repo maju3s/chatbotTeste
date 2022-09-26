@@ -62,7 +62,7 @@ function send(){
         document.getElementsByClassName("main")[0].appendChild(request);
         document.getElementById("inp_text").value = "";
 
-        fetch('https://api.monkdev.com/fun/chat?msg=$(text')
+        fetch('https://api.monkdev.com/fun/chat?msg=$(text)')
         .then(response => response.json())
         .then(function(data){
             var response = document.createElement("div");
