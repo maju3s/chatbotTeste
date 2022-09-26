@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+    <title>Olá, mundo!</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+<div class="row mt-1" style="display: flex;">
+
+    <div class="col-md-6-sm-10 text-center">
+        <h1 class="display-4 font-weight-normal">chat bott</h1>
+<img src="rb.jpg" class="w-50 mt-5" alt="robô"/>
+
+</div>
+
+<div class="col-md-4 col-sm-8 offset-1 bg-white p-3" id="outer">
+    <div class="main"></div>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="me pergunte qualquer coisa" id="inp_text" style="height:50px;"/>
+        <div class="input-group-append">
+            <button class="btn btn-primary btn-lg" id="send"></button>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+<script>
+
+document.getElementById("inp_text").focus();
+document.getElementsByTagName("body")[0].addEventListener("keypress", function (e){
+    if(e.key == "enter"){
+        send();
+    }
+
+});
+
+document.getElementById("send").addEventListener("click", send);
+function send(){
+    var text = document.getElementById("inp_text").value;
+    if(text == ""){
+
+    }
+    else{
+        var request = document.createElement("div");
+        request.className = "request";
+        request.innerText = text;
+
+
+        document.getElementsByClassName("main")[0].appendChild(request);
+        document.getElementById("inp_text").value = "";
+
+        fetch('https://api.monkdev.com/fun/chat?msg=$(text')
+        .then(response => response.json())
+        .then(function(data){
+            var response = document.createElement("div");
+            response.className = "response";
+            response.innerText = data.response;
+            
+            setTimeout(function(){
+                document.getElementsByClassName("main")[0].appendChild(response);
+                var a = document.getElementsByClassName("main")[0].scrollHeight;
+                document.getElementsByClassName("main")[0].scrollTop = a+100;
+        
+            } , 1000)
+        })
+    }
+
+    var a = document.getElementsByClassName("main")[0].scrollHeight;
+    document.getElementsByClassName("main")[0].scrollTop = a;
+}
+
+</script>
+
+
+</body>
+</html>
+
